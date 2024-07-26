@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>min_cal</title>
+</head>
+<body>
+  <input type="text" id="firstNumber" placeholder="Enter Your first number">
+  <input type="text" id="secondNumber" placeholder="Enter Your second number">
+  
+  <select id="operation">
+    <option value="">Select Operation</option>
+    <option value="add">Add</option>
+    <option value="minus">Minus</option>
+    <option value="divide">Divide</option>
+  </select>
+
+  <script>
+    document.getElementById("operation").onchange = function () {
+      performOperation(this.value);
+    };
+
+    function performOperation(operation) {
+      let a = parseFloat(document.getElementById("firstNumber").value);
+      let b = parseFloat(document.getElementById("secondNumber").value);
+
+      if (isNaN(a) || isNaN(b)) {
+        console.log("Please enter valid numbers");
+        return;
+      }
+
+      switch (operation) {
+        case 'add':
+          console.log(`Result: ${a + b}`);
+          break;
+        case 'minus':
+          console.log(`Result: ${a - b}`);
+          break;
+        case 'divide':
+          if (b === 0) {
+            console.log("Cannot divide by zero");
+          } else {
+            console.log(`Result: ${a / b}`);
+          }
+          break;
+        default:
+          console.log("Select an operation");
+      }
+    }
+  </script>
+</body>
+</html>
+
+</html>

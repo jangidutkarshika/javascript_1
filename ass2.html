@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conditional_statement</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            width: 50%;
+            margin: auto;
+            background-color: white;
+            color: black;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .color {
+            height: 20px;
+            width: 20px;
+            border: 2px solid black;
+            border-radius: 50%;
+            display: inline-block;
+            cursor: pointer;
+            margin: 5px;
+        }
+        #red { background-color: red; }
+        #yellow { background-color: yellow; }
+        #green { background-color: green; }
+        #blue { background-color: blue; }
+        #black { background-color: black; }
+        .box {
+            width: 100%;
+            padding: 20px;
+        }
+        .uppercase {
+            text-transform: uppercase;
+        }
+        .lowercase {
+            text-transform: lowercase;
+        }
+        .para2 {
+            display: none;
+            margin: 40px;
+        }
+        .para2.active {
+            display: block;
+            margin: 40px;
+        }
+        button {
+            margin: 5px;
+            padding: 5px 10px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            background-color: green;
+            color: white;
+        }
+        button:hover {
+            background-color: darkgreen;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form>
+            <label for="select">Select Your Domain:</label><br>
+            <select id="select">
+                <option value="choice">Make a choice</option>
+                <option value="react">React</option>
+                <option value="django">Django</option>
+                <option value="angular">Angular</option>
+                <option value="aws">AWS</option>
+            </select>
+        </form>
+        <div class="box" id="mybox">
+            <div id="p" class="para2 active">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione suscipit modi corrupti velit in nihil. Eveniet consequatur soluta reprehenderit fugiat animi. Labore repellendus quidem maiores nobis debitis, maxime autem possimus ducimus, nulla in placeat sunt perspiciatis laborum quas libero, vitae quis? Rem ratione ullam commodi maxime, asperiores nam architecto praesentium eum vero nisi alias, libero id voluptatum accusantium molestias beatae neque repudiandae? Veritatis nostrum assumenda iusto?.</p>
+            </div>
+            <div id="react" class="para2">
+                <p>React is a JavaScript library created by Facebook<br>React is a User Interface (UI) library<br>React is a tool for building UI components<br></p>
+            </div>
+            <div id="django" class="para2">
+                <p>Django, a high-level Python web framework, streamlines web development by emphasizing simplicity and efficiency. Known for its philosophy, Django provides built-in features like an ORM (Object-Relational Mapping), admin interface, and authentication system. Its MVC (Model-View-Controller) architecture, represented as MVT (Model-View-Template) in Django, enhances code organization. Django promotes DRY (Don't Repeat Yourself) principles, reducing redundancy. With a strong emphasis on security and scalability, Django simplifies tasks like URL routing, database migrations, and template rendering. Its thriving community and extensive documentation make it a popular choice for developing robust, scalable web applications rapidly.</p>
+            </div>
+            <div id="angular" class="para2">
+                <p>Angular is an open-source, JavaScript framework written in TypeScript. Google maintains it, and its primary purpose is to develop single-page applications. As a framework, Angular has clear advantages while also providing a standard structure for developers to work with.</p>
+            </div>
+            <div id="aws" class="para2">
+                <p>AWS Console Mobile Application, provided by Amazon Web Services, lets you view and manage a select set of resources and receive push notifications to stay informed and connected with your AWS resources while on-the-go.</p>
+            </div>
+            <div class="circle">
+                <div class="color" id="red"></div>
+                <div class="color" id="yellow"></div>
+                <div class="color" id="green"></div>
+                <div class="color" id="blue"></div>
+                <div class="color" id="black"></div>
+            </div>
+            <button id="uppercase">Uppercase</button>
+            <button id="lowercase">Lowercase</button>
+            <button id="inc">+</button>
+            <button id="dec">-</button>
+            <input type="color" id="color">
+        </div>
+    </div>
+    <script>
+        document.getElementById("red").onclick = function() {
+            document.body.style.background = "red";
+        }
+        document.getElementById("yellow").onclick = function() {
+            document.body.style.background = "yellow";
+        }
+        document.getElementById("green").onclick = function() {
+            document.body.style.background = "green";
+        }
+        document.getElementById("blue").onclick = function() {
+            document.body.style.background = "blue";
+        }
+        document.getElementById("black").onclick = function() {
+            document.body.style.background = "black";
+        }
+
+        document.getElementById("uppercase").onclick = function() {
+            document.querySelector('.para2.active p').style.textTransform = "uppercase";
+        }
+        document.getElementById("lowercase").onclick = function() {
+            document.querySelector('.para2.active p').style.textTransform = "lowercase";
+        }
+
+        let counter = 16;
+        document.getElementById("inc").onclick = function() {
+            counter++;
+            document.querySelector('.para2.active p').style.fontSize = counter + "px";
+        }
+
+        document.getElementById("dec").onclick = function() {
+            counter--;
+            document.querySelector('.para2.active p').style.fontSize = counter + "px";
+        }
+
+        document.getElementById("color").oninput = function() {
+            let color = document.getElementById("color").value;
+            document.querySelector('.container').style.backgroundColor = color;
+        }
+
+        function handleSelection() {
+            const selectedValue = document.querySelector('#select').value;
+            const contentDivs = document.querySelectorAll('.para2');
+            
+            contentDivs.forEach(div => {
+                div.classList.remove('active');
+            });
+
+            const contentDiv = document.querySelector(`#${selectedValue}`);
+            if (contentDiv) {
+                contentDiv.classList.add('active');
+            }
+        }
+
+        document.querySelector('#select').addEventListener('change', handleSelection);
+    </script>
+</body>
+</html>
